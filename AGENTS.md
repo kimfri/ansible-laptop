@@ -4,7 +4,7 @@
 
 - Fedora-only Ansible project that provisions this laptop locally.
 - Entrypoint is `site.yml`; the `laptops` group targets `localhost` with `ansible_connection=local`.
-- Roles live in `roles/`. The first role is `basic`, which installs `terminator`, `fzf`, and `bash-git-prompt`, ensures their bash integration in `~/.bashrc`, sets `EDITOR=/usr/bin/vim`, and manages aliases from `basic_bash_aliases`.
+- Roles live in `roles/`. The first role is `basic`, which installs `terminator`, `fzf`, `bash-git-prompt`, and VS Code, ensures bash integration in `~/.bashrc`, sets `EDITOR=/usr/bin/vim`, and manages aliases from `basic_bash_aliases`.
 
 ## Commands
 
@@ -16,6 +16,7 @@ Run from the repo root:
 - Apply: `ansible-playbook site.yml --ask-become-pass`
 - Inspect targets: `ansible-inventory --graph`
 - Verify the package: `rpm -q terminator`
+- Verify VS Code: `rpm -q code`
 - Verify bash-git-prompt: `git -C ~/.bash-git-prompt rev-parse HEAD`
 
 `--ask-become-pass` is unnecessary when sudo is passwordless.
@@ -28,6 +29,7 @@ Run from the repo root:
 - Manage `~/.bashrc` with `lineinfile`, `replace`, or `blockinfile`; do not create duplicate fzf, EDITOR, alias, or bash-git-prompt entries.
 - Add aliases to `basic_bash_aliases`; removing an entry does not remove its existing `.bashrc` line.
 - `bash-git-prompt` is not a Fedora package. Install it with `ansible.builtin.git` and never update an existing clone (`update: false`).
+- VS Code is configured in `roles/basic/tasks/vscode.yml` using the Microsoft RPM repo, `rpm_key`, `yum_repository`, and `dnf`.
 - Prefix role-specific defaults with the role name (for example `basic_terminator_package`).
 - Wire new roles into `site.yml`; do not add host-specific tasks there.
 - `ansible-lint` is not installed and is not available in the Fedora 45 repos; do not assume it exists.

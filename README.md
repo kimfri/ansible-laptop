@@ -34,13 +34,13 @@ ansible-playbook site.yml --ask-become-pass
 
 - `site.yml` – entrypoint som applicerar rollerna på gruppen `laptops`
 - `inventory/hosts.yml` – `localhost` med `ansible_connection=local`
-- `roles/basic/` – första rollen; installerar `terminator`, `fzf` och `bash-git-prompt` samt konfigurerar fzf och bash-git-prompt i `~/.bashrc`
+- `roles/basic/` – första rollen; installerar `terminator`, `fzf`, `bash-git-prompt` och VS Code samt konfigurerar fzf och bash-git-prompt i `~/.bashrc`
 
 ## Roller
 
 ### `basic`
 
-Installerar grundpaket och användarkonfiguration. Just nu `terminator`, `fzf` och `bash-git-prompt` samt integration för fzf och bash-git-prompt i `~/.bashrc`.
+Installerar grundpaket och användarkonfiguration. Just nu `terminator`, `fzf`, `bash-git-prompt` och VS Code samt integration för fzf och bash-git-prompt i `~/.bashrc`.
 
 Variabler:
 

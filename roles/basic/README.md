@@ -1,6 +1,6 @@
 # basic
 
-Grundroll för Fedora-laptopen. Installerar baspaket med `ansible.builtin.dnf`, klonar `bash-git-prompt` och ser till att integrationen för fzf och bash-git-prompt finns i `~/.bashrc`.
+Grundroll för Fedora-laptopen. Installerar baspaket med `ansible.builtin.dnf`, klonar `bash-git-prompt`, installerar VS Code via `tasks/vscode.yml` och ser till att integrationen för fzf och bash-git-prompt finns i `~/.bashrc`.
 
 ## Variabler
 

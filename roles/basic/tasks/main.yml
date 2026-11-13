@@ -19,6 +19,9 @@
     depth: 1
     update: false
 
+- name: Configure Visual Studio Code
+  ansible.builtin.import_tasks: vscode.yml
+
 - name: Add fzf bash integration comment
   ansible.builtin.lineinfile:
     path: "{{ ansible_facts['user_dir'] }}/.bashrc"
