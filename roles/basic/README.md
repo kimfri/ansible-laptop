@@ -1,18 +1,20 @@
 # basic
 
-Grundroll för Fedora-laptopen. Installerar baspaket med `ansible.builtin.dnf` och ser till att fzf:s bash-integration finns i `~/.bashrc`.
+Grundroll för Fedora-laptopen. Installerar baspaket med `ansible.builtin.dnf`, klonar `bash-git-prompt` och ser till att integrationen för fzf och bash-git-prompt finns i `~/.bashrc`.
 
 ## Variabler
 
 - `basic_terminator_package` – paketet som installeras, standard `terminator`.
 - `basic_fzf_package` – paketet som installeras, standard `fzf`.
+- `basic_bash_git_prompt_repo` – repot som klonas, standard `https://github.com/magicmonty/bash-git-prompt.git`.
+- `basic_bash_git_prompt_version` – branch eller commit, standard `master`.
+- `basic_bash_git_prompt_dest` – klonens mål, standard `~/.bash-git-prompt`.
 
 ## Exempel
 
 ```yaml
 - name: Configure laptop
   hosts: laptops
-  become: true
   roles:
     - basic
 ```

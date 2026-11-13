@@ -11,6 +11,14 @@
     state: present
   become: true
 
+- name: Install bash-git-prompt
+  ansible.builtin.git:
+    repo: "{{ basic_bash_git_prompt_repo }}"
+    dest: "{{ basic_bash_git_prompt_dest }}"
+    version: "{{ basic_bash_git_prompt_version }}"
+    depth: 1
+    update: false
+
 - name: Add fzf bash integration comment
   ansible.builtin.lineinfile:
     path: "{{ ansible_facts['user_dir'] }}/.bashrc"
@@ -24,4 +32,21 @@
     path: "{{ ansible_facts['user_dir'] }}/.bashrc"
     regexp: '^eval "\$\(fzf --bash\)"$'
     line: 'eval "$(fzf --bash)"'
+    create: true
+
+- name: Wrap existing bash-git-prompt block in .bashrc
+  ansible.builtin.replace:
+    path: "{{ ansible_facts['user_dir'] }}/.bashrc"
+    regexp: '(?m)(?:# BEGIN ANSIBLE MANAGED BLOCK: bash-git-prompt\n)?(if \[ -f "\$HOME/\.bash-git-prompt/gitprompt\.sh" \]; then\n    GIT_PROMPT_ONLY_IN_REPO=1\n    source "\$HOME/\.bash-git-prompt/gitprompt\.sh"\nfi)(?:\n# END ANSIBLE MANAGED BLOCK: bash-git-prompt)?'
+    replace: '# BEGIN ANSIBLE MANAGED BLOCK: bash-git-prompt\n\1\n# END ANSIBLE MANAGED BLOCK: bash-git-prompt'
+
+- name: Ensure bash-git-prompt block exists in .bashrc
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK: bash-git-prompt"
+    block: |
+      if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+          GIT_PROMPT_ONLY_IN_REPO=1
+          source "$HOME/.bash-git-prompt/gitprompt.sh"
+      fi
     create: true
