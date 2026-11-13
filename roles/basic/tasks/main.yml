@@ -34,6 +34,13 @@
     line: 'eval "$(fzf --bash)"'
     create: true
 
+- name: Set editor in .bashrc
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.bashrc"
+    regexp: '^export EDITOR='
+    line: "export EDITOR={{ basic_editor }}"
+    create: true
+
 - name: Wrap existing bash-git-prompt block in .bashrc
   ansible.builtin.replace:
     path: "{{ ansible_facts['user_dir'] }}/.bashrc"
