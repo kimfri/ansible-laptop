@@ -34,14 +34,15 @@ ansible-playbook site.yml --ask-become-pass
 
 - `site.yml` – entrypoint som applicerar rollerna på gruppen `laptops`
 - `inventory/hosts.yml` – `localhost` med `ansible_connection=local`
-- `roles/basic/` – första rollen; installerar `terminator` med `ansible.builtin.dnf`
+- `roles/basic/` – första rollen; installerar `terminator` och `fzf` samt konfigurerar fzf:s bash-integration
 
 ## Roller
 
 ### `basic`
 
-Installerar grundpaket. Just nu endast `terminator`.
+Installerar grundpaket och användarkonfiguration. Just nu `terminator` och `fzf` samt fzf-integration i `~/.bashrc`.
 
-Variabel:
+Variabler:
 
 - `basic_terminator_package` – paketnamn, standard `terminator`
+- `basic_fzf_package` – paketnamn, standard `fzf`

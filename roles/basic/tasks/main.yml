@@ -3,3 +3,25 @@
   ansible.builtin.dnf:
     name: "{{ basic_terminator_package }}"
     state: present
+  become: true
+
+- name: Install fzf with dnf
+  ansible.builtin.dnf:
+    name: "{{ basic_fzf_package }}"
+    state: present
+  become: true
+
+- name: Add fzf bash integration comment
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.bashrc"
+    regexp: '^# Set up fzf key bindings and fuzzy completion$'
+    line: "# Set up fzf key bindings and fuzzy completion"
+    insertbefore: '^eval "\$\(fzf --bash\)"$'
+    create: true
+
+- name: Enable fzf bash key bindings and completion
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.bashrc"
+    regexp: '^eval "\$\(fzf --bash\)"$'
+    line: 'eval "$(fzf --bash)"'
+    create: true

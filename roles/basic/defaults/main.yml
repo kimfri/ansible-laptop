@@ -1,2 +1,3 @@
 ---
 basic_terminator_package: terminator
+basic_fzf_package: fzf
