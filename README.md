@@ -34,13 +34,13 @@ ansible-playbook site.yml --ask-become-pass
 
 - `site.yml` – entrypoint som applicerar rollerna på gruppen `laptops`
 - `inventory/hosts.yml` – `localhost` med `ansible_connection=local`
-- `roles/basic/` – första rollen; installerar `terminator`, `fzf`, `bash-git-prompt` och VS Code samt konfigurerar fzf och bash-git-prompt i `~/.bashrc`
+- `roles/basic/` – första rollen; installerar `terminator`, `fzf`, `bash-git-prompt` och VS Code samt konfigurerar fzf, bash-git-prompt och bash-funktioner i `~/.bashrc`
 
 ## Roller
 
 ### `basic`
 
-Installerar grundpaket och användarkonfiguration. Just nu `terminator`, `fzf`, `bash-git-prompt` och VS Code samt integration för fzf och bash-git-prompt i `~/.bashrc`.
+Installerar grundpaket och användarkonfiguration. Just nu `terminator`, `fzf`, `bash-git-prompt` och VS Code samt integration för fzf och bash-git-prompt i `~/.bashrc` och funktionen `h`.
 
 Variabler:
 
@@ -50,4 +50,5 @@ Variabler:
 - `basic_bash_git_prompt_version` – branch eller commit, standard `master`
 - `basic_bash_git_prompt_dest` – klonens mål, standard `~/.bash-git-prompt`
 - `basic_editor` – editor som sätts i `~/.bashrc`, standard `/usr/bin/vim`
+- `basic_code_dir` – katalogen som bash-funktionen `h` går till, standard `~/code`
 - `basic_bash_aliases` – lista med alias (`name` och `command`), standard `l` → `ls -l`
