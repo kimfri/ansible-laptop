@@ -50,3 +50,4 @@ Variabler:
 - `basic_bash_git_prompt_version` – branch eller commit, standard `master`
 - `basic_bash_git_prompt_dest` – klonens mål, standard `~/.bash-git-prompt`
 - `basic_editor` – editor som sätts i `~/.bashrc`, standard `/usr/bin/vim`
+- `basic_bash_aliases` – lista med alias (`name` och `command`), standard `l` → `ls -l`

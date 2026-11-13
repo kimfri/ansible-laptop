@@ -5,3 +5,6 @@ basic_bash_git_prompt_repo: https://github.com/magicmonty/bash-git-prompt.git
 basic_bash_git_prompt_version: master
 basic_bash_git_prompt_dest: "{{ ansible_facts['user_dir'] }}/.bash-git-prompt"
 basic_editor: /usr/bin/vim
+basic_bash_aliases:
+  - name: l
+    command: "ls -l"
