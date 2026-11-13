@@ -1,0 +1,6 @@
+---
+- name: Configure laptop
+  hosts: laptops
+  become: true
+  roles:
+    - basic
