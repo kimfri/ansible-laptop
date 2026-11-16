@@ -22,6 +22,9 @@
 - name: Configure Visual Studio Code
   ansible.builtin.import_tasks: vscode.yml
 
+- name: Configure Podman
+  ansible.builtin.import_tasks: podman.yml
+
 - name: Configure bash functions
   ansible.builtin.import_tasks: bash_functions.yml
 

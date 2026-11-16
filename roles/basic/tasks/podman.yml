@@ -1,0 +1,6 @@
+---
+- name: Install Podman packages with dnf
+  ansible.builtin.dnf:
+    name: "{{ basic_podman_packages }}"
+    state: present
+  become: true
