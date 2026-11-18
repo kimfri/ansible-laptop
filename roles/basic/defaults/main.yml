@@ -1,6 +1,7 @@
 ---
 basic_terminator_package: terminator
 basic_fzf_package: fzf
+basic_make_package: make
 basic_podman_packages:
   - podman
   - podman-compose

@@ -11,6 +11,12 @@
     state: present
   become: true
 
+- name: Install make with dnf
+  ansible.builtin.dnf:
+    name: "{{ basic_make_package }}"
+    state: present
+  become: true
+
 - name: Install bash-git-prompt
   ansible.builtin.git:
     repo: "{{ basic_bash_git_prompt_repo }}"
